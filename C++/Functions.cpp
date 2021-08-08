@@ -5,7 +5,7 @@ using namespace std;
 int max_of_four(int u, int v, int w, int x){
     int temp = 0;
     int set[4] = {u, v, w, x};
-    for(int i = 0; i < sizeof(set)/sizeof(set[0); i++){
+    for(int i = 0; i < sizeof(set)/sizeof(set[0]); i++){
         if(set[i] > temp){
             cout << "the set element is: " << set[i] << endl;
             temp = set[i];
