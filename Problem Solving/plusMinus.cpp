@@ -36,4 +36,6 @@ int main(){
     }
 
     cout << "The ratio of positive integers is: " << pos/j.setprecision(6) << endl;
+
+    return 0;
 }
