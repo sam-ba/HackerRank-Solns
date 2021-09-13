@@ -19,23 +19,27 @@ float pos, neg, zer = 0;
 int main(){
     cout << "How many integers are you entering?" << endl;
     cin >> j;
-    
-    cout << "Enter a positive, negative, or zero integer: " << endl;
-    cin >> a;
 
-    if(a > 0){
+    for(int i=0; i<j; i++){
+        cout << "Enter a positive, negative, or zero integer: " << endl;
+        cin >> a;
+
+        if(a > 0){
         pos++;
-    }
+        }
 
-    else if(a < 0){
+        else if(a < 0){
         neg++;
-    }
+        }
 
-    else{
+        else{
         zer++;
+        }
     }
-
+    
     cout << "The ratio of positive integers is: " << (pos/(double)j) << endl;
+    cout << "The ratio of negative integers is: " << (neg/(double)j) << endl;
+    cout << "The ratio of zero integers is: " << (zer/(double)j) << endl;
 
     return 0;
 }
