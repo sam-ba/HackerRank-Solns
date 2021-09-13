@@ -8,38 +8,43 @@
 using namespace std; 
 
 // Variable to hold the number of integers
-int j = 0;
+float j = 0.0;
 
 // Variable to hold the user's input
 int a = 0;
 
 // Variables that count the no of positive, negative, and zero integers
-float pos, neg, zer = 0;
+float pos, neg, zer = 0.0;
 
 int main(){
+    // Prompt the user to enter the number of integers they plan to enter
     cout << "How many integers are you entering?" << endl;
     cin >> j;
 
+    // Loop through all the entries
     for(int i=0; i<j; i++){
         cout << "Enter a positive, negative, or zero integer: " << endl;
         cin >> a;
 
+        // Check for positive integer
         if(a > 0){
         pos++;
         }
 
+        // Check for negative integer
         else if(a < 0){
         neg++;
         }
 
+        // Check for zero integer
         else{
         zer++;
         }
     }
     
-    printf("%.6f \n", pos/j);
-    printf("%.6f \n", neg/j);
-    printf("%.6f \n", zer/j);
+    printf("The ratio of positive integers is: %.6f \n", pos/j);
+    printf("The ratio of negative integers is: %.6f \n", neg/j);
+    printf("The ratio of zero integers is: %.6f \n", zer/j);
 
     return 0;
 }
