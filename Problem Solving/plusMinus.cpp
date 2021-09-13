@@ -37,9 +37,9 @@ int main(){
         }
     }
     
-    cout << "The ratio of positive integers is: " << (pos/(double)j) << endl;
-    cout << "The ratio of negative integers is: " << (neg/(double)j) << endl;
-    cout << "The ratio of zero integers is: " << (zer/(double)j) << endl;
+    printf("%.6f \n", pos/j);
+    printf("%.6f \n", neg/j);
+    printf("%.6f \n", zer/j);
 
     return 0;
 }
