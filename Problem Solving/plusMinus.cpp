@@ -1,5 +1,6 @@
-/* Given an array of integers entered by the user, calculate the ratio of its elements that are positive, negative, and zero. 
- * Print the value of each fraction on a new line with 6 places after the decimal
+/* 
+Given an array of integers entered by the user, calculate the ratio of its elements that are positive, negative, and zero. 
+Print the value of each fraction on a new line with 6 places after the decimal
 */
 
 #include <iostream>
