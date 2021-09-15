@@ -51,7 +51,7 @@ using namespace std;
 int a = 0;
 
 // Array to store all the entries
-int arr[];
+int arr[5];
 
 int main(){
     cout << "Enter a single line of five space-separated integers: " << endl;
