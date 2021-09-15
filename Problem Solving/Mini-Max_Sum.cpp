@@ -47,8 +47,19 @@ Hints: Beware of integer overflow! Use 64-bit Integer.
 
 using namespace std;
 
+// Variable to store the user's entry
+int a = 0;
+
+// Array to store all the entries
+int arr[];
+
 int main(){
-    
+    cout << "Enter a single line of five space-separated integers: " << endl;
+
+    for(int i=0; i<5; i++){
+        cin >> a;
+        arr[i] = a;
+    }
 
     return 0;
 }
