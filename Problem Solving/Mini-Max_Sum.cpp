@@ -61,6 +61,7 @@ int temp = 0;
 
 // Function declaration
 int min_sum(int ar[5]);
+int max_sum(int ar[5]);
 
 int main(){
     cout << "Enter a single line of five space-separated integers: " << endl;
@@ -92,6 +93,9 @@ int main(){
     // Find the minimum sum of the array
     cout << "The minimum sum is: " << min_sum(arr) << endl;
 
+    // Find the maximum sum of the array
+    cout << "The maximum sum is: " << max_sum(arr) << endl;
+
     return 0;
 }
 
@@ -100,6 +104,16 @@ int min_sum(int ar[5]){
     int sum = 0;
 
     for(int i=0; i<4; i++){
+        sum += ar[i];
+    }
+    return sum;
+}
+
+// Function to calculate and return the maximum sum
+int max_sum(int ar[5]){
+    int sum = 0;
+
+    for(int i=1; i<5; i++){
         sum += ar[i];
     }
     return sum;
