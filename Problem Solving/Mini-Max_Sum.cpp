@@ -60,7 +60,7 @@ int n = sizeof(arr)/sizeof(arr[0]);
 int temp = 0;
 
 // Function declaration
-int min_sum(int *ar);
+int min_sum(int ar[5]);
 
 int main(){
     cout << "Enter a single line of five space-separated integers: " << endl;
@@ -96,11 +96,10 @@ int main(){
 }
 
 // Function to calculate and return the minimum sum
-int min_sum(int *ar){
+int min_sum(int ar[5]){
     int sum = 0;
-    int x = sizeof(ar)/sizeof(ar[0]);
 
-    for(int i=1; i<x; i++){
+    for(int i=0; i<4; i++){
         sum += ar[i];
     }
     return sum;
