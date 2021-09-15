@@ -53,13 +53,38 @@ int a = 0;
 // Array to store all the entries
 int arr[5];
 
+// Size of the array
+int n = sizeof(arr)/sizeof(arr[0]);
+
+// For ordering the array
+int temp = 0;
+
 int main(){
     cout << "Enter a single line of five space-separated integers: " << endl;
 
+    // Build the array with the user's input
     for(int i=0; i<5; i++){
         cin >> a;
         arr[i] = a;
+    } // end of for to build array
+
+    // Order the array in ascending order using nested for loops
+    for(int j=0; j<n; j++){
+        for(int i=0; i<n-1; i++){
+            if(arr[i] > arr[i+1]){
+                temp = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = temp;
+            }
+        }
+    } // end of nested for loops
+
+    // Print the ordered array
+    cout << "The ordered array is: ";
+    for(int k=0; k<n; k++){
+        cout << arr[k] << " , ";
     }
+    cout << endl;
 
     return 0;
 }
