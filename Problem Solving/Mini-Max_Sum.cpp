@@ -59,6 +59,9 @@ int n = sizeof(arr)/sizeof(arr[0]);
 // For ordering the array
 int temp = 0;
 
+// Function declaration
+int min_sum(int *ar);
+
 int main(){
     cout << "Enter a single line of five space-separated integers: " << endl;
 
@@ -66,7 +69,7 @@ int main(){
     for(int i=0; i<5; i++){
         cin >> a;
         arr[i] = a;
-    } // end of for to build array
+    } // end of for loop used to build array
 
     // Order the array in ascending order using nested for loops
     for(int j=0; j<n; j++){
@@ -86,5 +89,19 @@ int main(){
     }
     cout << endl;
 
+    // Find the minimum sum of the array
+    cout << "The minimum sum is: " << min_sum(arr) << endl;
+
     return 0;
+}
+
+// Function to calculate and return the minimum sum
+int min_sum(int *ar){
+    int sum = 0;
+    int x = sizeof(ar)/sizeof(ar[0]);
+
+    for(int i=1; i<x; i++){
+        sum += ar[i];
+    }
+    return sum;
 }
