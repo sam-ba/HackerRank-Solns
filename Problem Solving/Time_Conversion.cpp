@@ -53,4 +53,10 @@ int main(){
 
 string timeConversion(string a){
     string product;
+
+    if(a[8] == 'P'){
+        cout << "This is PM" << endl;
+        int temp = a.substr(0, 2);      // Error here as int != string
+        cout << "The hour is: " << endl;
+    }
 }
