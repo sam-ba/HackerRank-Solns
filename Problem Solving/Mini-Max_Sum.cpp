@@ -1,4 +1,6 @@
 /*
+From: https://www.hackerrank.com/challenges/one-month-preparation-kit-mini-max-sum/problem?h_l=interview&playlist_slugs%5B%5D%5B%5D=preparation-kits&playlist_slugs%5B%5D%5B%5D=one-month-preparation-kit&playlist_slugs%5B%5D%5B%5D=one-month-week-one 
+
 Given five positive integers, find the min and max values that can be calculated by summing exactly four of the 
 five integers. Then print the respective min and max values as a single line of two space-separated long integers
 

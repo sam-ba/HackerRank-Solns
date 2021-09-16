@@ -1,4 +1,6 @@
 /* 
+From: https://www.hackerrank.com/challenges/one-month-preparation-kit-plus-minus/problem?h_l=interview&playlist_slugs%5B%5D=preparation-kits&playlist_slugs%5B%5D=one-month-preparation-kit&playlist_slugs%5B%5D=one-month-week-one
+
 Given an array of integers entered by the user, calculate the ratio of its elements that are positive, negative, and zero. 
 Print the value of each fraction on a new line with 6 places after the decimal
 */
