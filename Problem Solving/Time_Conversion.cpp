@@ -37,8 +37,20 @@ Sample Output
 
 using namespace std;
 
-int main(){
+string timeConversion(string a);
 
+int main(){
+    cout << "Please enter a time in the 12-hour format (hh:mm:ssAM): " << endl;
+    string s;
+    getline(cin, s);
+
+    string result = timeConversion(s);
+
+    cout << "The time in 24-hour format is: " << result << endl;
 
     return 0;
+}
+
+string timeConversion(string a){
+    string product;
 }
