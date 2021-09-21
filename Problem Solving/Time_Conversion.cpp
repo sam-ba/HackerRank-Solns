@@ -71,7 +71,7 @@ string timeConversion(string a){
         cout << "The hour is: " << endl;
     }
     else if(hour == 12){
-        temp = "00":
+        temp = "00";
     }
 
     product = a.replace(0,2,temp).erase(a.size()-2);    // replace the hour and remove the 'AM'/'PM'
