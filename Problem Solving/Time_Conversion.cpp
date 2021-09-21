@@ -52,11 +52,28 @@ int main(){
 }
 
 string timeConversion(string a){
+    // Variable to hold the result
     string product;
 
+    string temp = a.substr(0, 2);
+    int hour = stoi(temp);
+
     if(a[8] == 'P'){
-        cout << "This is PM" << endl;
-        int temp = a.substr(0, 2);      // Error here as int != string
+        cout << "This is PM!" << endl;
+        cout << "The hour is: " << hour << endl;
+        if(hour + 12 < 24){
+            hour = hour + 12;
+            temp = to_string(hour);
+        }
+    }
+    else if(a[8] == 'A'){
+        cout << "This is AM!" << endl;
         cout << "The hour is: " << endl;
     }
+    else if(hour == 12){
+        temp = "00":
+    }
+
+    product = a.replace(0,2,temp).erase(a.size()-2);    // replace the hour and remove the 'AM'/'PM'
+    return product;
 }
