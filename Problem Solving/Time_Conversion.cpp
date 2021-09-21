@@ -73,12 +73,12 @@ string timeConversion(string a){
     else if(a[8] == 'A'){
         cout << "This is AM!" << endl;
         cout << "The hour is: " << endl;
+        // If the time is 12am
+        if(hour == 12){
+            temp = "00";
+        }
     }
-    // If the time is 12pm
-    else if(hour == 12){
-        temp = "00";
-    }
-
+    
     product = a.replace(0,2,temp).erase(a.size()-2);    // replace the hour and remove the 'AM'/'PM'
     return product;
 }
