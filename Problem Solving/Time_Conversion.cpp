@@ -55,21 +55,26 @@ string timeConversion(string a){
     // Variable to hold the result
     string product;
 
+    // Isolate the hour
     string temp = a.substr(0, 2);
-    int hour = stoi(temp);
+    int hour = stoi(temp);      // stoi - string to int
 
+    // If the time is PM
     if(a[8] == 'P'){
         cout << "This is PM!" << endl;
         cout << "The hour is: " << hour << endl;
+        // Add 12 to the hour to convert to 24-hour clock
         if(hour + 12 < 24){
             hour = hour + 12;
             temp = to_string(hour);
         }
     }
+    // If the time is AM
     else if(a[8] == 'A'){
         cout << "This is AM!" << endl;
         cout << "The hour is: " << endl;
     }
+    // If the time is 12pm
     else if(hour == 12){
         temp = "00";
     }
