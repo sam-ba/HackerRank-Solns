@@ -55,21 +55,21 @@ int main(){
     cin >> n;
 
     int grades[n];
+    cout << "Enter the students' grades: " << endl;
     for(int i=0; i<n; i++){
-        cout << "Enter the students' grades: " << endl;
         cin >> grades[i];
     }
 
     for(int i=0; i<n; i++){
         if(grades[i] >= 38){
-            rem = grades[i] % 5;
-            if( (5-rem) < 3){
-                grades[i] += 5 - rem;
+            rem = 5 - (grades[i] % 5);
+            if(rem < 3){
+                grades[i] += rem;
             }
         }
     }
 
-    cout << "The updated grades are: ";
+    cout << "The updated grades are: " << endl;
     for(int i=0; i<n; i++){
         cout << grades[i] << endl;
     }
