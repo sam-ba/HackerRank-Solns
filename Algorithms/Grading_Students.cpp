@@ -48,17 +48,30 @@ Sample Output 0
 
 using namespace std;
 
-int n, a = 0;
+int n, rem = 0;
 
 int main(){
-    int grades[n];
     cout << "How many grades are you entering?" << endl;
     cin >> n;
 
+    int grades[n];
     for(int i=0; i<n; i++){
         cout << "Enter the students' grades: " << endl;
-        cin >> a;
-        grades[i] = a;
+        cin >> grades[i];
+    }
+
+    for(int i=0; i<n; i++){
+        if(grades[i] >= 38){
+            rem = grades[i] % 5;
+            if( (5-rem) < 3){
+                grades[i] += 5 - rem;
+            }
+        }
+    }
+
+    cout << "The updated grades are: ";
+    for(int i=0; i<n; i++){
+        cout << grades[i] << endl;
     }
 
     return 0;
