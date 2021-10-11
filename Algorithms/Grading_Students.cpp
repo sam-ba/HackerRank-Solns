@@ -50,8 +50,6 @@ using namespace std;
 
 int n, a = 0;
 
-int gradingStudents(int arr[n]);
-
 int main(){
     int grades[n];
     cout << "How many grades are you entering?" << endl;
@@ -63,22 +61,5 @@ int main(){
         grades[i] = a;
     }
 
-    gradingStudents(grades[n]);
-
     return 0;
-}
-
-int gradingStudents(int arr[n]){
-    int rem = 0;
-
-    for(int i=0; i<n; i++){
-        if(arr[i] >= 38){
-            rem = arr[i] % 5;
-            if(rem < 3){
-                arr[i] += 5 - rem;
-            }
-        }
-    }
-
-    return arr[n];
 }
