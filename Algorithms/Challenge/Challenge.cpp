@@ -26,85 +26,59 @@ cat sample_input_small.txt | ./solution_executable | tee sample_output_small.txt
 ```
 */
 
+/*
+Assumptions: 
+    The robot moves in a straight line from each waypoint to the next
+    The list of waypoints provided is ordered and shows the points the robot moves to sequentially
+*/
+
 #include <iostream>
-#include <math.h> 
+#include <math.h>
+#include <iomanip>
 
 using namespace std;
 
-int n = 0;
+const float speed = 2.0;
 
-double speed = 2.0;
+// a is the waypoint the robot is currently at, and b is the next waypoint
+float dist_btw_coords(float bx, float ax, float by, float ay); 
 
-double dist_btw_coords(double a, double b, double c, double d);
-
-double check_travel_time(double a, double b, double c, double d);
+float check_travel_time(float bx, float ax, float by, float ay);
 
 int main(){
+    int no_of_waypoints = 0; 
+
     // Enter and store the number of waypoints in a variable
     cout << "How many waypoints are you entering?" << endl;
-    cin >> n;
+    cin >> no_of_waypoints;
 
-    // A 2D array to store all the coordinates and penalties
-    int coords[n][n];
+    // A 2x3 array to store all the coordinates and penalties
+    int coords[no_of_waypoints][no_of_waypoints+1];
     
     // Define the origin and end point coordinates and penalties
     coords[0][0] = 0;
     coords[0][1] = 0;
     coords[0][2] = 2000;    
-    coords[n+1][0] = 100;
-    coords[n+1][1] = 100;
-    coords[n+1][2] = 20000; // exaggerated penalties to ensure the robot always reaches the end
+    coords[no_of_waypoints+1][0] = 100;
+    coords[no_of_waypoints+1][1] = 100;
+    coords[no_of_waypoints+1][2] = 20000; // exaggerated penalties to ensure the robot always reaches the end
 
     // Store the coordinates and penalties in a nx3 array
     cout << "Enter the waypoints: " << endl;
-    for(int i=1; i<=n; i++){
+    for(int i=1; i<=no_of_waypoints; i++){
         for(int j=0; j<3; j++){
             cin >> coords[i][j];
         }
     }
     
-    cout << "The waypoints are: " << endl;
-    for(int i=0; i<=n+1; i++){
-        for(int j=0; j<3; j++){
-            cout << coords[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    /*
-    This approach just skips all waypoints with a penalty less than 10s
-    
-
-    // Find the total distance the robot has to travel through the waypoints
-    int count = 0;  // to store the number of waypoints that are visited
-    int not_count = 0;  // to store the number of waypoints that are skipped
-    int penalties = 0;  // the penalties of the skipped waypoints
-    double total_distance = 0.0;
-    for(int i=0; i<n+1; i++){
-        if(coords[i+1][2] > 10){
-            total_distance += dist_btw_coords(coords[i+1][0], coords[i][0], coords[i+1][1], coords[i][1]);
-            count++;
-        }
-        else{   // if the penalty of the next waypoint is less than 10s, no point going there
-            total_distance += dist_btw_coords(coords[i+2][0], coords[i][0], coords[i+2][1], coords[i][1]);
-            count++;
-            not_count++;
-            penalties += coords[i+1][2];
-            i++;
-        }
-    }
-    cout << "The total visited waypoints are: " << count << endl;
-    cout << "The total skipped waypoints are: " << not_count << endl;
-    */
-
     // This approach checks the travel time and compares to the penalty before skipping/going
     int count = 0;  // to store the number of waypoints that are visited
     int not_count = 0;  // to store the number of waypoints that are skipped
     int penalties = 0;  // the penalties of the skipped waypoints
-    double total_distance = 0.0;
-    double wait_time = 10.0;    // 10s wait time at each waypoint
+    float total_distance = 0.0;
+    float wait_time = 10.0;    // 10s wait time at each waypoint
 
-    for(int i=0; i<n+1; i++){
+    for(int i=0; i<no_of_waypoints+1; i++){
         if((check_travel_time(coords[i+1][0], coords[i][0], coords[i+1][1], coords[i][1]) + wait_time) > coords[i+1][2]){
             // Skip the waypoint if the time spent going there is longer than the penalty of not going
             total_distance += dist_btw_coords(coords[i+2][0], coords[i][0], coords[i+2][1], coords[i][1]);
@@ -119,35 +93,28 @@ int main(){
             count++;
         }
     }
-    cout << "The total visited waypoints are: " << count << endl;
-    cout << "The total skipped waypoints are: " << not_count << endl;
-    
-    cout << endl;
-    cout << "The total distance is: " << total_distance << endl;
-    
-    double drive_time = total_distance/speed;
-    cout << "The total drive time is: " << drive_time << endl;
-    cout << "The accumulated penalties are: " << penalties << endl;
-    
-    double total_time = drive_time + (count*wait_time) + penalties;
-    cout << "The total time is: " << total_time << endl;
+        
+    float drive_time = total_distance/speed;
+        
+    float total_time = drive_time + (count*wait_time) + penalties;
+    cout << "The total time is: " << fixed << setprecision(3) << total_time << endl;
 
     return 0;
 }
 
-double dist_btw_coords(double a, double b, double c, double d){
-    double distance = 0;
-    double x = pow(a-b, 2);
-    double y = pow(c-d, 2);
+float dist_btw_coords(float bx, float ax, float by, float ay){
+    float distance = 0;
+    float x = pow(bx-ax, 2);
+    float y = pow(by-ay, 2);
     distance = sqrt(x + y);
     return distance;
 }
 
-double check_travel_time(double a, double b, double c, double d){
-    double distance = 0;
-    double x = pow(a-b, 2);
-    double y = pow(c-d, 2);
+float check_travel_time(float bx, float ax, float by, float ay){
+    float distance = 0;
+    float x = pow(bx-ax, 2);
+    float y = pow(by-ay, 2);
     distance = sqrt(x + y);
-    double driving_time = distance/speed;
+    float driving_time = distance/speed;
     return driving_time;
 }
