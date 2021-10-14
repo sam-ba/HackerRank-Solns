@@ -37,6 +37,8 @@ double speed = 2.0;
 
 double dist_btw_coords(double a, double b, double c, double d);
 
+double check_travel_time(double a, double b, double c, double d);
+
 int main(){
     // Enter and store the number of waypoints in a variable
     cout << "How many waypoints are you entering?" << endl;
@@ -48,10 +50,10 @@ int main(){
     // Define the origin and end point coordinates and penalties
     coords[0][0] = 0;
     coords[0][1] = 0;
-    coords[0][2] = 20;
+    coords[0][2] = 2000;    
     coords[n+1][0] = 100;
     coords[n+1][1] = 100;
-    coords[n+1][2] = 20;
+    coords[n+1][2] = 20000; // exaggerated penalties to ensure the robot always reaches the end
 
     // Store the coordinates and penalties in a nx3 array
     cout << "Enter the waypoints: " << endl;
@@ -68,6 +70,10 @@ int main(){
         }
         cout << endl;
     }
+
+    /*
+    This approach just skips all waypoints with a penalty less than 10s
+    
 
     // Find the total distance the robot has to travel through the waypoints
     int count = 0;  // to store the number of waypoints that are visited
@@ -89,14 +95,40 @@ int main(){
     }
     cout << "The total visited waypoints are: " << count << endl;
     cout << "The total skipped waypoints are: " << not_count << endl;
+    */
+
+    // This approach checks the travel time and compares to the penalty before skipping/going
+    int count = 0;  // to store the number of waypoints that are visited
+    int not_count = 0;  // to store the number of waypoints that are skipped
+    int penalties = 0;  // the penalties of the skipped waypoints
+    double total_distance = 0.0;
+    double wait_time = 10.0;    // 10s wait time at each waypoint
+
+    for(int i=0; i<n+1; i++){
+        if((check_travel_time(coords[i+1][0], coords[i][0], coords[i+1][1], coords[i][1]) + wait_time) > coords[i+1][2]){
+            // Skip the waypoint if the time spent going there is longer than the penalty of not going
+            total_distance += dist_btw_coords(coords[i+2][0], coords[i][0], coords[i+2][1], coords[i][1]);
+            count++;
+            not_count++;
+            penalties += coords[i+1][2];
+            i++;
+        }
+        else{   
+            // Go to the waypoint if the penalty of not going is more than the time spent going there
+            total_distance += dist_btw_coords(coords[i+1][0], coords[i][0], coords[i+1][1], coords[i][1]);
+            count++;
+        }
+    }
+    cout << "The total visited waypoints are: " << count << endl;
+    cout << "The total skipped waypoints are: " << not_count << endl;
     
     cout << endl;
     cout << "The total distance is: " << total_distance << endl;
     
     double drive_time = total_distance/speed;
     cout << "The total drive time is: " << drive_time << endl;
+    cout << "The accumulated penalties are: " << penalties << endl;
     
-    double wait_time = 10.0;
     double total_time = drive_time + (count*wait_time) + penalties;
     cout << "The total time is: " << total_time << endl;
 
@@ -109,4 +141,13 @@ double dist_btw_coords(double a, double b, double c, double d){
     double y = pow(c-d, 2);
     distance = sqrt(x + y);
     return distance;
+}
+
+double check_travel_time(double a, double b, double c, double d){
+    double distance = 0;
+    double x = pow(a-b, 2);
+    double y = pow(c-d, 2);
+    distance = sqrt(x + y);
+    double driving_time = distance/speed;
+    return driving_time;
 }
