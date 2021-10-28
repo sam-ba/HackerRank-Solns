@@ -98,14 +98,27 @@ using namespace std;
 
 int main(){
     cin >> n;
-    int strings[n];
+    string strings[n];
     for(int i=0; i<n; i++){
         cin >> strings[i];
     }
     cin >> q;
-    int queries[q];
+    string queries[q];
     for(int i=0; i<q; i++){
         cin >> queries[i];
+    }
+    
+    int counters[q] = {0};
+    for(int i=0; i<q; i++){
+        for(int j=0; j<n; j++){
+            if(queries[i] == strings[j]){
+                counters[i]++;
+            }
+        }
+    }
+    
+    for(int i=0; i<q; i++){
+        cout << counters[i] << endl;
     }
     
     return 0;
