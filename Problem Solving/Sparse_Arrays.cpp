@@ -92,32 +92,32 @@ Sample Output 3
 
 #include <iostream>
 
-int n, q = 0;
+int no_of_strings, no_of_queries = 0;
 
 using namespace std;
 
 int main(){
-    cin >> n;
-    string strings[n];
-    for(int i=0; i<n; i++){
+    cin >> no_of_strings;
+    string strings[no_of_strings];
+    for(int i=0; i<no_of_strings; i++){
         cin >> strings[i];
     }
-    cin >> q;
-    string queries[q];
-    for(int i=0; i<q; i++){
+    cin >> no_of_queries;
+    string queries[no_of_queries];
+    for(int i=0; i<no_of_queries; i++){
         cin >> queries[i];
     }
     
-    int counters[q] = {0};
-    for(int i=0; i<q; i++){
-        for(int j=0; j<n; j++){
+    int counters[no_of_queries] = {0};
+    for(int i=0; i<no_of_queries; i++){
+        for(int j=0; j<no_of_strings; j++){
             if(queries[i] == strings[j]){
                 counters[i]++;
             }
         }
     }
     
-    for(int i=0; i<q; i++){
+    for(int i=0; i<no_of_queries; i++){
         cout << counters[i] << endl;
     }
     
